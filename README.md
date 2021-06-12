@@ -12,6 +12,8 @@ Python是一门好的语言，网上关于它的资料也很多，但由于Pytho
 
 全称 `Python Enhancement Proposals`， 即 Python 增强提案。PEP 是 Python 社区提供描述信息、开发进程或新功能的设计文档。PEP 应提供该功能的简明技术规范和该功能的基本原理。
 
+- **pep7**  Style Guide for C Code / [c 代码风格指导](peps/pep7_zh.md)
+
 ### 2.CPython
 
 Python 有很多实现，其中 CPython 是官方实现，即以 C 语言完成的 Python 实现，这也是Python使用最多最普及的版本，我们平时在Python官方下载的Python解释器就是CPython
