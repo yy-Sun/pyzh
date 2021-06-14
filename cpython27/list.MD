@@ -338,13 +338,18 @@ PyList_Insert(PyObject *op, Py_ssize_t where, PyObject *newitem)
     return ins1((PyListObject *)op, where, newitem);
 }
 
+/*
+ * 向 list 的尾部插入一个对象
+ * */
 static int
 app1(PyListObject *self, PyObject *v)
 {
+    // 获取当前 list 的元素数量
     Py_ssize_t n = PyList_GET_SIZE(self);
 
     assert (v != NULL);
     if (n == PY_SSIZE_T_MAX) {
+        // 设置异常信息为 OverflowError
         PyErr_SetString(PyExc_OverflowError,
             "cannot add more objects to list");
         return -1;
@@ -353,8 +358,8 @@ app1(PyListObject *self, PyObject *v)
     if (list_resize(self, n+1) == -1)
         return -1;
 
-    Py_INCREF(v);
-    PyList_SET_ITEM(self, n, v);
+    Py_INCREF(v); // 将 v 对象的引用计数 +1
+    PyList_SET_ITEM(self, n, v); // 设置 list[n] = v (在 listobject.h 中实现的宏函数)
     return 0;
 }
 
@@ -863,9 +868,13 @@ listinsert(PyListObject *self, PyObject *args)
     return NULL;
 }
 
+/*
+ * list.append 方法
+ * */
 static PyObject *
 listappend(PyListObject *self, PyObject *v)
 {
+    // 真正实现由 app1() 完成
     if (app1(self, v) == 0)
         Py_RETURN_NONE;
     return NULL;
